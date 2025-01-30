@@ -11,7 +11,7 @@
 
         <div class="flex gap-x-4">
           <AppButton @click="handleManually()">Create manually</AppButton>
-          <AppButton>Create with AI</AppButton>
+          <AppButton @click="handleAI()">Create with AI</AppButton>
         </div>
       </div>
 
@@ -23,6 +23,10 @@
 <script lang="ts" setup>
 async function handleManually() {
   navigateTo('/create/manually',)
+}
+
+async function handleAI() {
+  navigateTo('/create/ai',)
 }
 </script>
 
