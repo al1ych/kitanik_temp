@@ -1,38 +1,80 @@
 <template>
-    <SectionWelcome class="min-h-[70vh]">
-        <div class="relative flex items-center justify-between w-full p-8">
-            <h1 class="font-league text-kitanik">Kitanik</h1>
-
-            <div class="flex flex-col gap-y-8 items-center w-full">
-                <p class="text-subhead">Monetize your startup Ideas</p>
-
-                <AppButton @click="handleStart">
-                    Get started!
-                </AppButton>
+    <div class="relative flex flex-col items-center justify-center w-full p-8 h-[70vh]">
+        <h1
+            class="font-mulish text-h3 font-[600] bg-gradient-to-b from-white to-white/30 bg-clip-text text-transparent">
+            Платформа для идей и людей
+        </h1>
+        <p class="text-subhead bg-gradient-to-b from-white to-white/30 bg-clip-text text-transparent mt-[18px]">
+            Монетизируйте свои идеи, находите партнеров и меняйте мир
+        </p>
+        <transition name="fade" mode="out-in">
+            <div v-if="!showOptions" key="single" class="mt-[48px]">
+                <AppButtonSpecial @click="handleCreateIdea">
+                    Создать идею!
+                </AppButtonSpecial>
             </div>
-        </div>
-    </SectionWelcome>
-
-    <section class="mx-[110px]">
-        <div class="flex justify-between items-start gap-x-16">
-            <div class="flex flex-col items-center text-center max-w-[30%]">
-                <h3 class="font-league text-h3">Pitch</h3>
-                <p class="text-subhead">Evaluate your idea in seconds with AI</p>
+            <div v-else key="double" class="flex space-x-[48px] mt-[48px]">
+                <AppButtonSpecial @click="handleManualIdea">
+                    У меня есть идея
+                </AppButtonSpecial>
+                <AppButtonSpecial @click="handleAiIdea">
+                    Анализ идеи с AI
+                </AppButtonSpecial>
             </div>
-            <div class="flex flex-col items-center text-center max-w-[30%]">
-                <h3 class="font-league text-h3">Post</h3>
-                <p class="text-subhead">Post an idea in a minute and get the attention of investors</p>
-            </div>
-            <div class="flex flex-col items-center text-center max-w-[30%]">
-                <h3 class="font-league text-h3">Profit</h3>
-                <p class="text-subhead">Sell an idea or raise money</p>
-            </div>
-        </div>
-    </section>
+        </transition>
+    </div>
 </template>
 
 <script lang="ts" setup>
-async function handleStart() {
-    navigateTo('/create',)
+import { ref } from 'vue'
+const showOptions = ref(false)
+
+async function handleCreateIdea() {
+    showOptions.value = true
+}
+
+async function handleManualIdea() {
+    console.log('Manual idea')
+}
+
+async function handleAiIdea() {
+    console.log('AI idea')
+    navigateTo('/create/ai')
 }
 </script>
+
+<style scoped>
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.5s;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+    opacity: 0;
+}
+
+/* Ваши стили для фона страницы остаются без изменений */
+:global(html, body) {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background-color: #191C1C;
+}
+
+:global(body) {
+    position: relative;
+}
+
+:global(body)::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background-image: url('/images/bg.svg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 100% auto;
+    image-rendering: auto;
+}
+</style>

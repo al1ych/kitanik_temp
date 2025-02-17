@@ -1,40 +1,56 @@
 <template>
-    <div class="layout-container bg-white text-black min-h-screen">
-        <!-- Навигационная панель -->
-        <header class="p-4  bg-white">
-            <nav class="container mx-auto flex justify-between items-center">
-                <NuxtLink to="/" class="text-2xl font-bold text-kitanik-purple-500">Logo</NuxtLink>
-                <ul class="flex space-x-16">
-                    <li>
-                        <NuxtLink to="/" class="hover:text-kitanik-purple-500">Home</NuxtLink>
-                    </li>
-                    <li>
-                        <NuxtLink to="/about" class="hover:text-kitanik-purple-500">About</NuxtLink>
-                    </li>
-                    <li>
-                        <NuxtLink to="/contact" class="hover:text-kitanik-purple-500 font-bold">Sign in</NuxtLink>
-                    </li>
-                </ul>
-            </nav>
-        </header>
+    <div class="layout-container text-black min-h-screen">
+        <!-- Обёртка, чтобы центрировать шапку по горизонтали -->
+        <div class="w-full flex justify-center">
+            <header class="header p-4 bg-[#202323] opacity-80 mt-[28px] backdrop-blur-[20px] 
+                 w-[93%] h-[82.5px] rounded-[75px] flex items-center justify-between">
+                <!-- Левая часть: Круг с "RU" -->
+                <div
+                    class="flex items-center justify-center w-[50px] h-[50px] bg-black rounded-full text-white text-sm">
+                    RU
+                </div>
+
+                <!-- Центральная часть: Логотип/текст KITANIK -->
+                <NuxtLink to="/" class="text-2xl font-[400] text-white">
+                    KITANIK
+                </NuxtLink>
+
+                <!-- Правая часть: Текст "BeIn" и стрелка в круге -->
+                <div class="flex items-center space-x-2">
+                    <span class="text-white">Выйти</span>
+                    <div class="w-[50px] h-[50px] bg-black rounded-full flex items-center justify-center text-white">
+                        →
+                    </div>
+                </div>
+            </header>
+        </div>
 
         <!-- Основной контент -->
         <main class="container mx-auto px-0 py-8">
             <NuxtPage />
         </main>
-
-        <!-- Футер -->
-        <footer class="p-4 bg-gray-200 text-center">
-            <p>&copy; {{ new Date().getFullYear() }} Kitanik</p>
-        </footer>
     </div>
 </template>
 
 <script setup>
+/* Здесь может быть ваш код, если нужен */
 </script>
 
 <style scoped>
 .layout-container {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Mulish', sans-serif;
+}
+
+/* Обнуляем html/body, растягиваем на высоту экрана */
+html,
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+/* Шрифт для заголовка (при желании) */
+.header {
+    font-family: 'Wix Madefor Display', sans-serif;
 }
 </style>

@@ -12,13 +12,14 @@ module.exports = {
             fontFamily: {
                 sans: ['Roboto', 'sans-serif'], // Основной шрифт для текста
                 league: ['League Gothic', 'sans-serif'], // Шрифт League Gothic
+                mulish: ['Mulish', 'sans-serif'],
             },
             fontSize: {
                 kitanik: '322px',
                 h1: '150px',
                 h2: '128px',
                 h3: '55px',
-                subhead: '25px',
+                subhead: '32px',
                 body: '18px',
                 button: '18px',
                 filter: '16px',
@@ -41,7 +42,7 @@ module.exports = {
                 'pure-black': '#000000',
             },
             screens: {
-                figma: '1334px', // Фрейм из Figma
+                figma: '1440px', // Фрейм из Figma
             },
         },
     },
