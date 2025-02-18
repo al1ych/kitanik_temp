@@ -20,7 +20,7 @@ module.exports = {
                 h2: '128px',
                 h3: '55px',
                 subhead: '32px',
-                body: '18px',
+                body: '25px',
                 button: '18px',
                 filter: '16px',
                 small_button: '8px',
