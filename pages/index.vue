@@ -1,14 +1,21 @@
 <template>
 
-    <div class="overflow-auto h-[3000px]">
+    <div class=" h-[3000px]">
 
         <SectionTitle />
 
-        <SectionHowTo />
+        <!-- <SectionHowTo /> -->
 
-        <SectionYouGet />
+        <!-- <SectionYouGet /> -->
+
+        <img src="/images/Block2.svg" class="pointer-events-none w-full" />
+
+        <img src="/images/Block3.svg" class="pointer-events-none w-full" />
+
 
         <SectionPricing />
+
+        <img src="/images/Team.svg" class="pointer-events-none w-full" />
 
     </div>
 
