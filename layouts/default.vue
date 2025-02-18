@@ -3,8 +3,25 @@
         <!-- Шапка -->
         <div class="header-wrapper">
             <header class="header">
-                <div class="logo-circle">
-                    RU
+                <div class="relative inline-block">
+                    <div 
+                        class="logo-circle" 
+                        :class="{ 'expanded': isOpen }" 
+                        @mouseenter="isOpen = true" 
+                        @mouseleave="isOpen = false"
+                    >
+                    <span v-if="!isOpen">{{ lang }}</span>
+                    <div v-else class="circle-options">
+                        <span 
+                            v-for="option in ['RU', 'EN']" 
+                            :key="option" 
+                            @click="changeLang(option)"
+                            :class="{ 'active': lang === option }"
+                        >
+                        {{ option }}
+                        </span>
+                    </div>
+                    </div>
                 </div>
                 <NuxtLink to="/" class="flex gap-[10px] items-center text-2xl font-300 text-white">
                     <img src="@/assets/icons/Logo.svg" alt="Logo" class="w-[32px] h-[22px]" />
@@ -26,7 +43,15 @@
 </template>
 
 <script setup>
-// Дополнительный код, если требуется
+    import { ref } from "vue";
+
+    const lang = ref("RU");
+    const isOpen = ref(false);
+
+    function changeLang(selected) {
+    lang.value = selected; 
+    isOpen.value = false;
+    }
 </script>
 
 <style scoped>
@@ -83,17 +108,53 @@
     color: white;
 }
 
-/* Элементы шапки */
 .logo-circle {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 50px;
     height: 50px;
-    background-color: black;
+    background-color: #191C1C;
     border-radius: 50%;
     font-size: 0.875rem;
-    color: white;
+    color: #B4CBA2;
+    cursor: pointer;
+    transition: border-radius 0.1s ease-in-out;
+    position: relative;
+    overflow: hidden;
+}
+
+.logo-circle.expanded {
+    height: 100px;
+    border-radius: 50px;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: 10px;
+    transform: translateY(25px);
+}
+
+.circle-options {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    width: 100%;
+    opacity: 0;
+    transform: translateY(-50px);
+    transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.logo-circle.expanded .circle-options {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.circle-options span {
+    width: 100%;
+    text-align: center;
+    padding: 5px 0;
+    cursor: pointer;
 }
 
 .logo {
