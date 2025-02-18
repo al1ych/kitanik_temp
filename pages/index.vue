@@ -8,6 +8,8 @@
 
         <SectionYouGet />
 
+        <SectionPricing />
+
     </div>
 
 </template>
