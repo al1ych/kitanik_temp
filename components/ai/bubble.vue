@@ -1,7 +1,7 @@
 <template>
-
-  <div class="h-[55px] bg-white rounded-[30px] flex items-center px-[32px] text-black text-[16px]">
-    <p>{{ text }}</p>
+  <img v-if="from === 'ai'" src="@/assets/icons/IconAI.svg" alt="Logo" class="w-[56px] h-[56px]" />
+  <div class="min-h-[55px] h-fit text-wrap break-words bg-[#EFEEEC] rounded-[30px] flex items-center px-[32px] py-[15px] text-black text-[16px] response">
+    <p class="text-wrap">{{ text }}</p>
   </div>
 </template>
 
@@ -14,4 +14,8 @@ const props = defineProps<{
 
 </script>
 
-<style></style>
+<style>
+  .response{
+    overflow-wrap: anywhere;
+  }
+</style>

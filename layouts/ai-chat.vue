@@ -1,6 +1,6 @@
 <template>
   <div class="layout-container text-black min-h-screen">
-    <main class="container mx-auto px-0">
+    <main class="container mx-auto p-0">
       <NuxtPage />
     </main>
   </div>

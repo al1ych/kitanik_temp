@@ -23,6 +23,7 @@ module.exports = {
                 body: '18px',
                 button: '18px',
                 filter: '16px',
+                small_button: '8px',
             },
             colors: {
                 'kitanik-purple': {
@@ -40,6 +41,7 @@ module.exports = {
                 white: '#FDFCFF',
                 black: '#272431',
                 'pure-black': '#000000',
+                'white-5': '#252828'
             },
             screens: {
                 figma: '1440px', // Фрейм из Figma
