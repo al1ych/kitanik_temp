@@ -11,8 +11,9 @@
                 </div>
 
                 <!-- Центральная часть: Логотип/текст KITANIK -->
-                <NuxtLink to="/" class="text-2xl font-[400] text-white">
-                    KITANIK
+                <NuxtLink to="/" class="flex gap-[10px] items-center text-2xl font-300 text-white">
+                    <img src="@/assets/icons/Logo.svg" alt="Logo" class="w-[32px] h-[22px]" />
+                    <span>KITANIK</span>
                 </NuxtLink>
 
                 <!-- Правая часть: Текст "BeIn" и стрелка в круге -->
