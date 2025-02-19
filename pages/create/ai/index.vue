@@ -141,7 +141,7 @@ async function handleSend() {
 
     if (currentAiResponseIndex === 0) {
       const additionalResponse: Message = {
-        text: `<img src="${iconDownload}" alt="Скачать отчет" style="width: 20px; height: 20px; vertical-align: middle;"> Скачать отчет`,
+        text: '📁 Скачать отчет',
         from: 'ai',
         isDownload: true,
         fileName: 'BotIdea.pdf'
