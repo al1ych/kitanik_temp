@@ -42,8 +42,12 @@
         <!-- Контент: "Что умеет AI?" и т.д. -->
         <main class="flex flex-1 w-[885px] overflow-y-auto">
           <div class="w-full h-fit flex-1 flex flex-col justify-start items-end gap-[50px]">
-            <div v-for="msg in history" class="flex flex-1 w-full h-fit gap-[20px]" :class="{ 'justify-end': msg.from === 'user' }">
+            <div v-for="msg in history" class="flex flex-1 w-full h-fit gap-[20px]" :class="{ 'justify-end': msg.from === 'user' }" @click="msg.isDownload ? handleDownload(msg.fileName!) : null">
               <AiBubble :text="msg.text" :from="msg.from"/>
+            </div>
+            <div v-if="isLoading" class="w-full h-fit flex-1 flex gap-[20px] justify-start items-center">
+              <img src="@/assets/icons/IconAI.svg" alt="Logo" class="w-[56px] h-[56px]" />
+              <img src="@/assets/icons/BotAnswer.svg" alt="" class="w-[39px] h-[39px] spinning">
             </div>
           </div>
         </main>
@@ -92,26 +96,73 @@
 </template>
 
 <script setup lang="ts">
-
+import iconDownload from '@/assets/icons/IconDownload.svg';
 definePageMeta({
   layout: 'ai-chat'
 })
 
 type Message = {
   text: string,
-  from: 'user' | 'ai'
+  from: 'user' | 'ai',
+  isDownload?: boolean,
+  fileName?: string
 }
 
 const history = ref<Message[]>([
-  { text: 'Привет! Чем могу помочь?', from: 'ai' },
-  { text: 'Привет! Как мне оформить мою идею?', from: 'user' },
-])
+  { text: 'Привет! Пожалуйста, опишите вкратце вашу идею.', from: 'ai' },
+]);
 
-const inputModel = ref('')
+const inputModel = ref('');
+const aiResponses = [
+  'Отлично звучит! Кто будет целевой аудиторией для SleepWise? Рассматриваете ли вы определённые возрастные группы, профессии или, возможно, людей с конкретными проблемами со сном?',
+  'Понятно. SleepWise ориентирован на довольно широкую аудиторию, каждая из которых имеет свои специфические потребности. А какую основную проблему или проблемы каждая из этих групп может решать с помощью SleepWise? Почему они могут выбрать именно ваше решение?',
+  'Спасибо за столь подробное описание! Теперь становится ясно, что SleepWise предлагает уникальные и персонализированные решения для разных групп пользователей. А какие потенциальные препятствия или вызовы вы видите на пути к реализации и популяризации вашего проекта? Может быть, есть сложности с технологией, интеграцией носимых устройств, привлечением пользователей или что-то другое?',
+  'Понятно, это действительно важные аспекты. Как вы планируете справляться с этими вызовами? Например, какие шаги или стратегии вы намерены применить для повышения точности данных, обеспечения конфиденциальности или привлечения пользователей?',
+  'Приступаю к созданию. Ожидайте, процесс занимает в среднем 1-2 минуты.'
+];
+
+let currentAiResponseIndex = 0;
+const isLoading = ref(false);
 
 async function handleSend() {
-  history.value.push({ text: inputModel.value, from: 'user' })
-  history.value.push({ text: 'К сожалению, я не могу помочь в этом вопросе', from: 'ai' })
+  if (inputModel.value.trim() === '') return;
+
+  const userInput = inputModel.value;
+  history.value.push({ text: userInput, from: 'user' });
+
+  isLoading.value = true;
+
+  setTimeout(() => {
+    const aiResponse = aiResponses[currentAiResponseIndex];
+
+    history.value.push({ text: aiResponse, from: 'ai' });
+
+    currentAiResponseIndex = (currentAiResponseIndex + 1) % aiResponses.length;
+
+    if (currentAiResponseIndex === 0) {
+      const additionalResponse: Message = {
+        text: `<img src="${iconDownload}" alt="Скачать отчет" style="width: 20px; height: 20px; vertical-align: middle;"> Скачать отчет`,
+        from: 'ai',
+        isDownload: true,
+        fileName: 'BotIdea.pdf'
+      };
+      history.value.push(additionalResponse);
+    }
+
+    isLoading.value = false;
+
+  }, 3000);
+
+  inputModel.value = '';
+}
+
+function handleDownload(fileName: string) {
+  const link = document.createElement('a');
+  link.href = `/${fileName}`;
+  link.download = fileName;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
 }
 
 </script>
@@ -159,5 +210,18 @@ async function handleSend() {
     -webkit-mask-composite: xor;
     mask-composite: exclude;
     z-index: -1;
+  }
+
+  .spinning {
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
   }
 </style>
