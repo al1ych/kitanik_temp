@@ -1,6 +1,7 @@
 <template>
-  <div class="flex flex-col items-center justify-center w-full p-8 min-h-[70vh] gap-[80px]">
-    <h2 ref="header" class="font-mulish text-subhead font-[400] text-white text-[34px]">
+  <!-- <div class="flex flex-col items-center justify-center w-full p-8 min-h-[70vh]"> -->
+  <img src="/images/Block2.svg" class="pointer-events-none" />
+  <!-- <h2 class="font-mulish text-subhead font-[400] text-white text-[34px]">
       Как это работает
     </h2>
 
@@ -29,8 +30,8 @@
       <div>
         <p ref="idea3" class="idea-text text-[25px]">Продайте идею и получите прибыль</p>
       </div>
-    </div>
-  </div>
+    </div> -->
+  <!-- </div> -->
 </template>
 
 <script lang="ts" setup>
