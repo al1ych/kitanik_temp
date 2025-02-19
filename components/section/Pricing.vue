@@ -11,7 +11,7 @@
       <div class="flex items-center">
         <p class="text-[200px] text-[#5BB9F4]">$3</p>
         <div>
-          <p class="text-[48px]">1 идея</p>
+          <p class="text-[48px] text-white">1 идея</p>
           <AppButtonSpecial>
             <p>Купить</p>
           </AppButtonSpecial>
@@ -21,7 +21,7 @@
       <div class="flex items-center">
         <p class="text-[200px] text-[#5BB9F4]">$20</p>
         <div>
-          <p class="text-[48px]">10 идей</p>
+          <p class="text-[48px] text-white">10 идей</p>
           <AppButtonSpecial>
             <p>Купить</p>
           </AppButtonSpecial>
@@ -45,7 +45,7 @@
 
     <div class="w-full h-px bg-gradient-to-r from-transparent via-[#efeeec] to-transparent" />
 
-    <div class="flex justify-between items-center w-[1000px] mt-[18px]">
+    <div class="flex justify-between items-center w-[1000px] mt-[18px] text-white">
       <div class="flex flex-col space-y-[8px]">
         <p class="text-[34px]">Для бизнеса</p>
         <p class="text-[18px] leading-[35px]">обратитесь к нам<br /> и мы подберем лучшие условия</p>
