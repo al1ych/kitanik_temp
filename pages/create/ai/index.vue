@@ -250,6 +250,10 @@ function handleDownload(fileName?: string) {
 </script>
 
 <style scoped>
+:global(body) {
+  background-color: #191C1C;
+}
+                  
 .aside {
   position: relative;
   z-index: 1;
