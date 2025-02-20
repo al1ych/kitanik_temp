@@ -54,9 +54,6 @@
               <img src="@/assets/icons/BotAnswer.svg" alt="" class="w-[39px] h-[39px] spinning" />
             </div>
           </div>
-          {{ isLoading }}
-          {{ isPolling }}
-
         </main>
 
         <!-- "Чат" / поле ввода внизу страницы -->
